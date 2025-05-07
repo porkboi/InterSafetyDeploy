@@ -8,6 +8,7 @@ on:
 jobs:
   embed:
     runs-on: ubuntu-latest
+    environment: secrets
 
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
