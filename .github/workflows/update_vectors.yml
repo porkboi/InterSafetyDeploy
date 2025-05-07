@@ -8,6 +8,7 @@ on:
 jobs:
   embed:
     runs-on: ubuntu-latest
+    environment: ${{ vars.secrets }}
 
     steps:
       - uses: actions/checkout@v3
@@ -18,8 +19,8 @@ jobs:
 
       - name: Debug environment variables
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ vars.SUPABASE_KEY }}
         run: |
           echo "SUPABASE_URL is: ${SUPABASE_URL}"
           echo "SUPABASE_KEY is: ${SUPABASE_KEY}"
