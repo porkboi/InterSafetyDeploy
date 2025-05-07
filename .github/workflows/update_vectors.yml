@@ -8,16 +8,22 @@ on:
 jobs:
   embed:
     runs-on: ubuntu-latest
-    environment: secrets
-
-    env:
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+    environment: secrets  # 👈 REQUIRED: this links to your GitHub Environment
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - run: pip install -r requirements.txt
-      - run: python src/embed_and_upload.py
+
+      - name: Export environment secrets
+        run: |
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> $GITHUB_ENV
+          echo "SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run embedding script
+        run: python src/embed_and_upload.py
