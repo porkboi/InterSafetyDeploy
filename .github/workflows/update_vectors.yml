@@ -8,7 +8,7 @@ on:
 jobs:
   embed:
     runs-on: ubuntu-latest
-    environment: secrets  # 👈 Connects to your GitHub Environment named "secrets"
+    environment: secrets
 
     steps:
       - uses: actions/checkout@v3
@@ -17,11 +17,25 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Debug environment variables
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: |
+          echo "SUPABASE_URL is: ${SUPABASE_URL}"
+          echo "SUPABASE_KEY is: ${SUPABASE_KEY}"
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_KEY" ]; then
+            echo "❌ Environment variables are NOT set correctly."
+            exit 1
+          else
+            echo "✅ Environment variables are present."
+          fi
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Run embedding script
-        env:  # 👈 Set secrets at the step level (this is critical!)
+        env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: python src/embed_and_upload.py
