@@ -10,7 +10,7 @@ df = pd.DataFrame(response.data)
 
 # Labeling logic
 df['label'] = df.apply(
-    lambda row: "SAFE" if row["positive-ratings"] > row["negative-ratings"] else "DANGEROUS",
+    lambda row: "SAFE" if row["positive_ratings"] > row["negative_ratings"] else "DANGEROUS",
     axis=1
 )
 
