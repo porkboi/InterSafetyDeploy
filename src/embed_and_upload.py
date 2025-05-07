@@ -1,5 +1,5 @@
 import pandas as pd
-from src.utils import load_model, get_supabase_client
+from utils import load_model, get_supabase_client
 
 model = load_model()
 supabase = get_supabase_client()
