@@ -1,0 +1,22 @@
+name: Update Prompt Embeddings
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # Hourly
+  workflow_dispatch:
+
+jobs:
+  embed:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install -r requirements.txt
+      - run: python src/embed_and_upload.py
