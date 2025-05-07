@@ -15,4 +15,5 @@ To begin using Intersafety Pro:
 - Follow the on-screen instructions to set up your account and access the platform's features.
 
 **Documentation**
+
 For detailed information on using Intersafety Pro, please refer to our User Guide and API Documentation.
