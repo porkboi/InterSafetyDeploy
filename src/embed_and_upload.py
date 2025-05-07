@@ -16,9 +16,9 @@ df['label'] = df.apply(
 
 # Upload with embeddings
 for _, row in df.iterrows():
-    embedding = model.encode(row["prompt"]).tolist()
+    embedding = model.encode(row["content"]).tolist()
     supabase.table("prompt_vectors").insert({
-        "prompt": row["prompt"],
+        "prompt": row["content"],
         "label": row["label"],
         "embedding": embedding
     }).execute()
