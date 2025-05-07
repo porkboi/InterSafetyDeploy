@@ -10,11 +10,6 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# Fetch latest prompt data
-def fetch_data():
-    
-    return 
-
 def train_and_save():
     response = supabase.table("prompts").select("*").execute()
     df = pd.DataFrame(response.data)
