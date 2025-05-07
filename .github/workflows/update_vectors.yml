@@ -19,8 +19,8 @@ jobs:
 
       - name: Debug environment variables
         env:
-          SUPABASE_URL: ${{ SUPABASE_URL }}
-          SUPABASE_KEY: ${{ SUPABASE_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
           echo "SUPABASE_URL is: ${SUPABASE_URL}"
           echo "SUPABASE_KEY is: ${SUPABASE_KEY}"
