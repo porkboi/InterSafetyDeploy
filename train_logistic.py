@@ -12,14 +12,15 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Fetch latest prompt data
 def fetch_data():
-    response = supabase.table("prompts").select("*").execute()
-    df = pd.DataFrame(response.data)
-    return df[['prompt', 'label']]
+    
+    return 
 
 def train_and_save():
-    df = fetch_data()
+    response = supabase.table("prompts").select("*").execute()
+    df = pd.DataFrame(response.data)
+    df['new'] = df['positive-ratings'] > df['negative-ratings']
     X = df['prompt']
-    y = df['label']
+    y = df['new']
 
     vectorizer = TfidfVectorizer(max_features=1000)
     X_vec = vectorizer.fit_transform(X)
