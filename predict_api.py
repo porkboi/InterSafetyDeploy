@@ -20,9 +20,11 @@ def read_root():
     return {"status": "Prompt Safety API is running"}
 
 @app.post("/classify")
-def classify_prompt_api(request: PromptRequest):
+async def classify_prompt_api(request: PromptRequest):
     try:
-        result = classify(request.prompt)
+        data = await request.body()
+        prompt = data.get("prompt", "")
+        result = classify(prompt)
         return {"prediction": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
