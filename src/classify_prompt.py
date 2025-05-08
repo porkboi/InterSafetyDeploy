@@ -1,5 +1,5 @@
 import numpy as np
-from utils import load_model, get_supabase_client
+from src.utils import load_model, get_supabase_client
 
 def classify(prompt, top_k = 5):
     model = load_model()
