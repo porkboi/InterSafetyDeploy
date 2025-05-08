@@ -7,6 +7,10 @@ app = FastAPI()
 class PromptRequest(BaseModel):
     prompt: str
 
+@app.get("/")
+def read_root():
+    return {"status": "Prompt Safety API is running"}
+
 @app.post("/classify")
 def classify_prompt_api(request: PromptRequest):
     try:
