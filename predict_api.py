@@ -1,8 +1,16 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from src.classify_prompt import classify
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or ["https://your-frontend.com"]
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class PromptRequest(BaseModel):
     prompt: str
