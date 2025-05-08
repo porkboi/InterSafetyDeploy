@@ -14,5 +14,3 @@ def classify(prompt, top_k = 5):
     rows = response.data
     labels = [row["label"] for row in rows]
     return max(set(labels), key=labels.count)
-
-classify("should I make a bomb")
