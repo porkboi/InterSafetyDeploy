@@ -1,7 +1,5 @@
 fastapi
 uvicorn
-joblib
-pydantic
 pandas
 supabase
 sentence-transformers
