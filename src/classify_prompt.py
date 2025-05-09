@@ -7,7 +7,7 @@ def classify(prompt: str, top_k: int = 5):
         model = load_model()
         supabase = get_supabase_client()
         embedding = model.encode(prompt).tolist()
-        print("🔢 Embedding generated:", embedding[:5])  # preview first 5 numbers
+        print("🔢 Embedding generated:", embedding[:5])
 
         response = supabase.rpc("classify_prompt_vec", {
             "embedding": embedding,
@@ -15,13 +15,10 @@ def classify(prompt: str, top_k: int = 5):
         }).execute()
 
         if response.error:
-            print("❌ Supabase RPC Error:", response.error)
             raise Exception("Supabase RPC error")
 
-        rows = response.data
-        print("✅ RPC rows returned:", rows)
-        labels = [row["label"] for row in rows]
-        return max(set(labels), key=labels.count)
+        label = response.data[0]["label"]
+        return label
 
     except Exception as e:
         print("❌ classify() error:", str(e))
