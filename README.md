@@ -1,4 +1,4 @@
-##InterSafety##
+<h1>InterSafety</h1>
 
 AI for Prompt Red Teaming Intersafety Pro is a cutting-edge platform dedicated to enhancing AI safety through prompt red teaming. Our mission is to identify and mitigate potential risks associated with AI prompt engineering by providing a suite of tools and methodologies for rigorous testing and evaluation. We aim to build a community that brings in people to review the AI generated prompts for LLM training and monetize these invaluable data.
 
