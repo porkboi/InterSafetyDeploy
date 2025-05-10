@@ -22,9 +22,7 @@ def read_root():
 @app.post("/classify")
 async def classify_prompt_api(request: PromptRequest):
     try:
-        data = await request.body()
-        prompt = data.get("prompt", "")
-        result = classify(prompt)
+        result = classify(request.prompt)
         return {"prediction": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
