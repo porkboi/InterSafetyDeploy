@@ -17,8 +17,8 @@ def classify(prompt: str, top_k: int = 5):
         if response.error:
             raise Exception("Supabase RPC error")
 
-        label = response.data[0]
-        return label["label"]
+        label = response.data["classify_prompt_vec"]
+        return label
 
     except Exception as e:
         print("❌ classify() error:", str(e))
